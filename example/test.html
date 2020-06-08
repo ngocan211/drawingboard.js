@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACWorks Inpainting</title>
+    <link rel="stylesheet" href="../css/drawingboard.css">
+
+    <style>
+        /*
+        * drawingboards styles: set the board dimensions you want with CSS
+        */
+        .board {
+            margin: 0 auto;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div class="example" data-example="1">
+    <h1>The default DrawingBoard</h1>
+    <div class="board" id="default-board"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script src="simple-undo.js" type="text/javascript"></script>
+<!-- in a production environment, just include the minified script. It contains the board and the default controls (size, nav, colors, download): -->
+<!--<script src="../dist/drawingboard.min.js"></script>-->
+
+<script src="../js/utils.js"></script>
+<script src="../js/board.js"></script>
+<script src="../js/controls/control.js"></script>
+<script src="../js/controls/color.js"></script>
+<script src="../js/controls/drawingmode.js"></script>
+<script src="../js/controls/navigation.js"></script>
+<script src="../js/controls/size.js"></script>
+<script src="../js/controls/download.js"></script>
+
+
+<script data-example="1">
+    //create the drawingboard by passing it the #id of the wanted container
+    var defaultBoard = new DrawingBoard.Board('default-board', {
+        background: false,
+        color: "#fff",
+        size: 30,
+        controls: [
+            {Size: {type: "range", min: 12, max: 42}},
+
+            {DrawingMode: {eraser: false, filler: false, pencil: false}},
+            {Navigation: {back: false, forward: false, reset: true}},
+        ],
+        droppable: true, //try dropping an image on the canvas!
+        stretchImg: true //the dropped image can be automatically ugly resized to to take the canvas size
+
+    });
+</script>
+
+
+</body>
+</html>
