@@ -58,6 +58,7 @@
 <form action="/mask" id="form1" method="post" enctype="multipart/form-data">
     <input type="hidden" id="mask_image" name="mask_image" value="">
     <input type="file" id="file" name="input_image"/>
+<button onclick="submit_mask()">INPAINT</button>
 
 </form>
 
@@ -76,6 +77,7 @@
 
 <script>
     $("#file").change(function (e) {
+        $('#default-board').detach();
         var _URL = window.URL || window.webkitURL;
 
         var reader = new FileReader();
@@ -142,6 +144,14 @@
         }
 
     });
+function submit_mask(){
+    // var canvas = document.getElementById('myCanvas');
+    var canvas = document.querySelector('canvas.drawing-board-canvas');
+    document.getElementById('mask_image').value = canvas.toDataURL('image/png');
+    document.forms["form1"].submit();
+
+}
+
 </script>
 
 </body>
